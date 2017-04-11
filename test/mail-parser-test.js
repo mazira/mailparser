@@ -381,6 +381,20 @@ exports['Text encodings'] = {
             test.equal(mailparser.to.value[0].name, 'Keld Jørn Simonsen');
             test.done();
         });
+    },
+    
+    'ISO-2022-JP Mime Words': test => {
+        let encodedText = 'Content-type: text/plain; charset=utf-8\r\n' +
+            'Subject: =?ISO-2022-JP?B?GyRCJSIlJCVGJWAyQTNKJVUlISUkJWsbKEI=?=',
+            mail = Buffer.from(encodedText, 'utf-8');
+
+        let mailparser = new MailParser();
+        mailparser.end(mail);
+        mailparser.on('data', () => false);
+        mailparser.on('end', () => {
+            test.equal(mailparser.subject, 'アイテム価格ファイル');
+            test.done();
+        });
     }
 };
 
