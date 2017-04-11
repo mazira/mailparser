@@ -13,7 +13,7 @@
     "he": "1.1.1",
     "html-to-text": "3.1.0",
     "iconv": "2.2.3",
-    "libmime": "mazira/libmime#latest",
+    "libmime": "mazira/libmime#744f880e74c432b198001e310c6fb0680009ea9f",
     "mailsplit": "4.0.0",
     "marked": "0.3.6"
   },
