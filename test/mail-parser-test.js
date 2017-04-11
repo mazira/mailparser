@@ -1,7 +1,7 @@
 'use strict';
 
 const MailParser = require('..').MailParser;
-const iconv = require('iconv-lite');
+const { Iconv } = require('iconv');
 const fs = require('fs');
 
 exports['General tests'] = {
@@ -1310,7 +1310,8 @@ exports['Attachment info'] = {
             'ŽŠ\r\n' +
             '--ABC--',
             expectedHash = '34bca86f8cc340bbd11446ee16ee3cae',
-            mail = iconv.encode(encodedText, 'iso-8859-13');
+            iconv = new Iconv('UTF-8', 'iso-8859-13'),
+            mail = iconv.convert(encodedText);
 
         let attachments = [];
         let mailparser = new MailParser();
